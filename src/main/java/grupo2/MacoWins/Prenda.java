@@ -1,14 +1,8 @@
 package grupo2.MacoWins;
 
-public class Prenda {
-	public int Precio;
-	public boolean Importado;
+public interface Prenda {
+	public int Precio = 0;
+	public boolean Importado = false;
 	
-	public double PrecioFinal (int valorNegocio){
-		double precioFinal = valorNegocio * Precio;
-		if (Importado) {
-			return precioFinal * (1.3);
-		}
-		return precioFinal;
-	}
+	public abstract double PrecioFinal (int valorNegocio);
 }
