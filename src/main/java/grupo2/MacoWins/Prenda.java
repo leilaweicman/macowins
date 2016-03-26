@@ -1,4 +1,4 @@
-package grupo2.MacoWins.Classes;
+package grupo2.MacoWins;
 
 public class Prenda {
 	public int Precio;
