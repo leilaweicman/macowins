@@ -4,34 +4,51 @@ import java.util.Scanner;
 
 public class App 
 {
-	private static ArrayList<Prenda> list;
+	public static ArrayList<Prenda> listPrendas;
+	public static ArrayList<Venta> listVentas;
+	public static int cantSacos = 0, cantPantalones = 0, cantCamisas = 0;
     public static void main( String[] args )
     {
-    	list = new ArrayList<Prenda>();
+    	listPrendas = new ArrayList<Prenda>();
+    	listVentas = new ArrayList<Venta>();
     	Scanner in = new Scanner(System.in);    	
     	String prenda;
+    	int cantidad;
     	
     	System.out.println("Ingresar prenda (c: camisa, p: pantalon, s:saco)");
     	prenda = in.next();
     	while(!prenda.equals("terminar")){
+        	System.out.println("Ingresar cantidad");
+        	cantidad = in.nextInt();
+        	Venta v = new Venta();
+        	v.cantidad = cantidad;
+        	
     		//Lo implemento con ifs porque no me deja hacer un switch de strings
     		//Hay que ver como manejar el tema de si es importado o no.
     		//Por ahora seteo todo en importado
     		if(prenda.equals("c")){
     			Camisa c = new Camisa(true);
-    			list.add(c);
+    			listPrendas.add(c);
+    			cantCamisas += cantidad;
+    			v.prenda = c;
     		}else if (prenda.equals("p")){
     			Pantalon p = new Pantalon(true);
-    			list.add(p);
+    			listPrendas.add(p);
+    			cantPantalones+= cantidad;  
+    			v.prenda = p;
     		}else if(prenda.equals("s")){
     			Saco s = new Saco(true);
-    			list.add(s);
-    		}
+    			listPrendas.add(s);
+    			cantSacos+= cantidad;
+    			v.prenda = s;
+    		}			
+			listVentas.add(v);
+			
         	System.out.println("Prenda agregada");
         	System.out.println("Ingresar prenda (c: camisa, p: pantalon, s:saco");
         	prenda = in.next();
     	}
-    	System.out.println("terminó");
-    	System.out.println(list);
+    	System.out.println("terminó");    	
+    	
     }
 }
