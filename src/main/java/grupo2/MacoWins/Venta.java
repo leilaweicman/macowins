@@ -2,12 +2,28 @@ package grupo2.MacoWins;
 import java.util.Date;
 
 public class Venta {
-	public Prenda prenda;
-	public int cantidad;
-	public Date fecha;
 	
-	public Venta(){
-		fecha = new Date();
+	private int cantidad;
+	private Date fecha;
+	private Prenda prenda;
+	
+	public int getCantidad() {
+		return cantidad;
 	}
-	
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+	public Date getFecha() {
+		return fecha;
+	}
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+	public Prenda getPrenda() {
+		return prenda;
+	}
+	public void setPrenda(Prenda prenda) {
+		this.prenda = prenda;
+	}	
 }
+

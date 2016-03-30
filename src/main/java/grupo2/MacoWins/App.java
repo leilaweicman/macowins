@@ -1,21 +1,18 @@
 package grupo2.MacoWins;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class App 
 {
-	public static ArrayList<Prenda> listPrendas;
-	public static ArrayList<Venta> listVentas;
-	public static int cantSacos = 0, cantPantalones = 0, cantCamisas = 0;
+	private static Scanner in;
     public static void main( String[] args )
     {
-    	listPrendas = new ArrayList<Prenda>();
-    	listVentas = new ArrayList<Venta>();
     	RegistrarVentas();
     }
     
     public static void RegistrarVentas(){
-    	Scanner in = new Scanner(System.in);    	
+    	Negocio macowins = new Negocio();
+    	in = new Scanner(System.in);    	
     	String prenda;
     	int cantidad;
     	
@@ -25,39 +22,37 @@ public class App
         	System.out.println("Ingresar cantidad");
         	cantidad = in.nextInt();
         	
-        	RegistrarVenta(prenda, cantidad);
+        	RegistrarVenta(prenda, cantidad, macowins);
         	
         	System.out.println("Ingresar prenda (c: camisa, p: pantalon, s:saco");
         	prenda = in.next();
     	}
-    	System.out.println("terminó");    	
+    	System.out.println("terminó");   
+    	for(int i=0; i<macowins.getVentas().size();i++){
+    		System.out.println("La venta numero "+i+" fue de "+macowins.getVentas().get(i).getCantidad()+" "+macowins.getVentas().get(i).getPrenda() + " al precio de " + macowins.getVentas().get(i).getPrenda().PrecioFinal()+" cada una, el dia "+macowins.getVentas().get(i).getFecha().toString());
+    	}
     	
     }
     
-    public static void RegistrarVenta(String prenda, int cantidad){
+    public static void RegistrarVenta(String prenda, int cantidad, Negocio neg){
     	Venta v = new Venta();
-    	v.cantidad = cantidad;
-    	
-		//Lo implemento con ifs porque no me deja hacer un switch de strings
-		//Hay que ver como manejar el tema de si es importado o no.
-		//Por ahora seteo todo en importado
+    	v.setCantidad(cantidad);
+    	v.setFecha(new Date());
+    	Prenda.setValorNegocio(20);
+		Prenda p = new Prenda();
+		
 		if(prenda.equals("c")){
-			Camisa c = new Camisa(true);
-			listPrendas.add(c);
-			cantCamisas += cantidad;
-			v.prenda = c;
+			p= new Camisa();
+			p.setOrigen(new Importada());
 		}else if (prenda.equals("p")){
-			Pantalon p = new Pantalon(true);
-			listPrendas.add(p);
-			cantPantalones+= cantidad;  
-			v.prenda = p;
+			p= new Pantalon();
+			p.setOrigen(new Importada());
 		}else if(prenda.equals("s")){
-			Saco s = new Saco(true);
-			listPrendas.add(s);
-			cantSacos+= cantidad;
-			v.prenda = s;
+			p= new Saco();
+			p.setOrigen(new Nacional());
 		}			
-		listVentas.add(v);		
+		v.setPrenda(p);
+		neg.registrarVenta(v);
     	System.out.println("Prenda agregada");
     }
 }
