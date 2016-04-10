@@ -4,10 +4,19 @@ public class Prenda {
 	private double precioBase;
 	private static double valorNegocio;
 	private Origen origen;
+	private Marca marca;
 	
-	public double PrecioFinal(){
-		//Precio Final = (Valor fijo del negocio + Precio Base de la Prenda) x Tasa de Importación
-		return ( (getValorNegocio() + this.getPrecioBase()) * this.getOrigen().tasaDeImportacion());
+	public void setMarca(Marca nombre) {
+		this.marca = nombre;
+	}
+	public Marca getMarca() {
+		return marca; 
+	}
+	
+	public double PrecioFinal() {
+		//Precio Final = (Valor fijo del negocio + Precio Base de la Prenda) x Tasa de Importación* coefNegocio
+		double precioOriginal = (this.getValorNegocio() + this.getPrecioBase()) * this.getOrigen().tasaDeImportacion();
+		return (precioOriginal * this.marca.GetCoeficiente(precioOriginal));
 	}
 	
 	public double getPrecioBase() {
@@ -18,7 +27,7 @@ public class Prenda {
 		this.precioBase = precioBase;
 	}
 
-	public static double getValorNegocio() {
+	public double getValorNegocio() {
 		return valorNegocio;
 	}
 

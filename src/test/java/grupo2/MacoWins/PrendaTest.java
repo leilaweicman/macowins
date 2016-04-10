@@ -15,10 +15,13 @@ public class PrendaTest {
 	public void init(){
 		camisa= new Camisa();
 		pantalon= new Pantalon();		
-		saco= new Saco();		
+		saco= new Saco();	
+		
 		Prenda.setValorNegocio(20);		
 		camisa.setOrigen(new Importada());
+		camisa.setMarca(new Armani());
 		pantalon.setOrigen(new Nacional());
+		pantalon.setMarca(new Sarkany());
 		saco.setOrigen(new Importada());
 	}
 	
@@ -35,12 +38,22 @@ public class PrendaTest {
 		Assert.assertEquals(300.0, saco.getPrecioBase());		
 	}
 	
-	@Test
+	/*@Test
 	public void PrecioFinalDelSacoNoEs300(){
 		Assert.assertNotSame(300.0, saco.PrecioFinal());		
 	}
 	@Test
 	public void PrecioFinalDelPantalonEs300(){
 		Assert.assertEquals(416.0, saco.PrecioFinal());		
+	} Estos tests quedan invalidos a partir de que depende de la politica de cada marca*/
+	
+	@Test
+	public void PrecioFinalDelPantalonEs297(){
+		Assert.assertEquals(297.0,pantalon.PrecioFinal());
+	}	
+	
+	@Test
+	public void PrecioFinalDeCamisaEs471() {
+		Assert.assertEquals(471.9,camisa.PrecioFinal());
 	}
 }
