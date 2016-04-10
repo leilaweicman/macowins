@@ -23,6 +23,7 @@ public class PrendaTest {
 		pantalon.setOrigen(new Nacional());
 		pantalon.setMarca(new Sarkany());
 		saco.setOrigen(new Importada());
+		saco.setMarca(new Sarkany());
 	}
 	
 	@Test
@@ -38,14 +39,10 @@ public class PrendaTest {
 		Assert.assertEquals(300.0, saco.getPrecioBase());		
 	}
 	
-	/*@Test
+	@Test
 	public void PrecioFinalDelSacoNoEs300(){
 		Assert.assertNotSame(300.0, saco.PrecioFinal());		
 	}
-	@Test
-	public void PrecioFinalDelPantalonEs300(){
-		Assert.assertEquals(416.0, saco.PrecioFinal());		
-	} Estos tests quedan invalidos a partir de que depende de la politica de cada marca*/
 	
 	@Test
 	public void PrecioFinalDelPantalonEs297(){
