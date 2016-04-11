@@ -1,7 +1,7 @@
 package grupo2.MacoWins;
 
 public class Prenda {
-	private double precioBase;
+	protected double precioBase;
 	private static double valorNegocio;
 	private Origen origen;
 	private Marca marca;
